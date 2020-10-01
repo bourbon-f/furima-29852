@@ -1,24 +1,57 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| nickname | string | null: false |
+| email    | string | null: false |
+| password | string | null: false |
+| name     | string | null: false |
+| name-kana| string | null: false |
+| birthday | string | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :listing
+- has_many :buy
 
-* Configuration
+## listing テーブル
 
-* Database creation
+| Column      | Type        | Options                        |
+| ----------- | ----------- | ------------------------------ |
+| image       | references  | null: false, foreign_key: true |
+| product_name| string      | null: false                    |
+| description | string      | null: false                    |
+| category    | string      | null: false                    |
+| status      | string      | null: false                    |
+| burden      | string      | null: false                    |
+| area        | string      | null: false                    |
+| days        | string      | null: false                    |
+| price       | string      | null: false                    |
+| user_id     | references  | null: false, foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :users
+- belongs_to :buy
 
-* Services (job queues, cache servers, search engines, etc.)
+## buy テーブル
 
-* Deployment instructions
+| Column      | Type        | Options                       |
+| ----------- | ----------- | ----------------------------- |
+| number      | string      | null: false                   |
+| deadline    | string      | null: false                   |
+| code        | string      | null: false                   |
+| postal-code | string      | null: false                   |
+| prefectures | string      | null: false                   |
+| municipality| string      | null: false                   |
+| address     | string      | null: false                   |
+| tel-number  | string      | null: false                   |
+| user_id     | references  | null: false foreign_key: true |
+| listing_id  | references  | null: false foreign_key: true |
 
-* ...
+### Association
+
+- belongs_to :users
+- belongs_to :listing
