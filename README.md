@@ -48,7 +48,7 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :add
+- has_one :address
 
 ## address テーブル
 | Column        | Type        | Options                       |
@@ -57,8 +57,9 @@
 | prefectures   | integer     | null: false                   |
 | municipality  | string      | null: false                   |
 | address       | string      | null: false                   |
-| building_name | string      | null: false                   |
+| building_name | string      |                               |
 | tel_number    | string      | null: false                   |
+| buy           | references  | null: false foreign_key: true |
 
 ### Association
 
