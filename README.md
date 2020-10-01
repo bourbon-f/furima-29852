@@ -7,10 +7,10 @@
 | nickname         | string | null: false |
 | email            | string | null: false |
 | password         | string | null: false |
-| first-name       | string | null: false |
-| family-name      | string | null: false |
-| first-name-kana  | string | null: false |
-| family-name-kana | string | null: false |
+| first_name       | string | null: false |
+| family_name      | string | null: false |
+| first_name_kana  | string | null: false |
+| family_name_kana | string | null: false |
 | birthday         | date   | null: false |
 
 ### Association
@@ -24,18 +24,18 @@
 | ----------- | ----------- | ------------------------------ |
 | product_name| string      | null: false                    |
 | description | text        | null: false                    |
-| category    | integer     | null: false                    |
-| status      | integer     | null: false                    |
-| burden      | integer     | null: false                    |
-| area        | integer     | null: false                    |
-| days        | integer     | null: false                    |
+| category_id | integer     | null: false                    |
+| status_id   | integer     | null: false                    |
+| burden_id   | integer     | null: false                    |
+| area_id     | integer     | null: false                    |
+| days_id     | integer     | null: false                    |
 | price       | integer     | null: false                    |
 | user        | references  | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :buy
+- has_one :buy
 
 ## buy テーブル
 
@@ -48,19 +48,16 @@
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :add
+- has_one :add
 
-## add テーブル
+## address テーブル
 | Column       | Type        | Options                       |
 | ------------ | ----------- | ----------------------------- |
-| number       | string      | null: false                   |
-| deadline     | string      | null: false                   |
-| code         | string      | null: false                   |
-| postal-code  | string      | null: false                   |
+| postal_code  | string      | null: false                   |
 | prefectures  | integer     | null: false                   |
 | municipality | string      | null: false                   |
 | address      | string      | null: false                   |
-| tel-number   | string      | null: false                   |
+| tel_number   | string      | null: false                   |
 
 ### Association
 
