@@ -3,17 +3,18 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :validatable
 
   # バリデーション
-  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-  validates_format_of :password, with: PASSWORD_REGEX
   with_options presence: true do
+    PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+    NAME_REGEX = /\A[ぁ-んァ-ン一-龥]+\z/.freeze
+    NAME_KANA_REGEX = /\A[ァ-ン]+\z/.freeze
     validates :nickname, length: { maximum: 40 }
     validates :email
-    validates :password, length: { minimum: 6 }
+    validates :password, length: { minimum: 6 , with:PASSWORD_REGEX}
     validates :password_confirmation
-    validates :family_name, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/}
-    validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/}
-    validates :family_name_kana, format: { with: /\A[ァ-ン]+\z/}
-    validates :first_name_kana, format: { with: /\A[ァ-ン]+\z/}
+    validates :family_name, format: { with:NAME_REGEX}
+    validates :first_name, format: { with:NAME_REGEX}
+    validates :family_name_kana, format: { with: NAME_KANA_REGEX}
+    validates :first_name_kana, format: { with: NAME_KANA_REGEX}
     validates :birthday
   end
 
