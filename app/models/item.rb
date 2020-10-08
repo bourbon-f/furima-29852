@@ -16,6 +16,7 @@ class Item < ApplicationRecord
   with_options numericality: { other_than: 1 } do
     validates :genre_id
     validates :status_id
+    validates :burden_id
   end
 
   # アソシエーション
@@ -25,5 +26,6 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :genre
   belongs_to_active_hash :status
+  belongs_to_active_hash :burden
 
 end
