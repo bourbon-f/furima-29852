@@ -8,7 +8,7 @@ class Item < ApplicationRecord
     validates :status_id
     validates :burden_id
     validates :area_id
-    validates :days_id
+    validates :day_id
     validates :price
     validates :user
   end
@@ -18,6 +18,7 @@ class Item < ApplicationRecord
     validates :status_id
     validates :burden_id
     validates :area_id
+    validates :day_id
   end
 
   # アソシエーション
@@ -29,5 +30,6 @@ class Item < ApplicationRecord
   belongs_to_active_hash :status
   belongs_to_active_hash :burden
   belongs_to_active_hash :area
+  belongs_to_active_hash :day
 
 end
