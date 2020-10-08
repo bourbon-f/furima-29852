@@ -10,13 +10,19 @@ class ItemsController < ApplicationController
   end
 
   def create
-    Tweet.create(item_params)
+    # Item.create(item_params)
+    @items = Item.new(item_params)
+    if @items.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   private
   
   def item_params
-    params.require(:item).permit(:product_name, :description, :category_id, :status_id, :burden_id, :area_id, :days_id, :price, :user)
+    params.require(:item).permit(:product_name, :description, :genre_id, :status_id, :burden_id, :area_id, :days_id, :price, :user)
   end
 
 end
