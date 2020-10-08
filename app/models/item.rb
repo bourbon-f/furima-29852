@@ -17,6 +17,7 @@ class Item < ApplicationRecord
     validates :genre_id
     validates :status_id
     validates :burden_id
+    validates :area_id
   end
 
   # アソシエーション
@@ -27,5 +28,6 @@ class Item < ApplicationRecord
   belongs_to_active_hash :genre
   belongs_to_active_hash :status
   belongs_to_active_hash :burden
+  belongs_to_active_hash :area
 
 end
