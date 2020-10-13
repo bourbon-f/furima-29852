@@ -34,8 +34,18 @@ describe Item do
         @items.valid?
         expect(@items.errors.full_messages).to include("Genre can't be blank")
       end
+      it "genre_idが1では出品できない" do
+        @items.genre_id = 1
+        @items.valid?
+        expect(@items.errors.full_messages).to include("Genre can't be blank")
+      end
       it "status_idが空では出品できない" do
         @items.status_id = ""
+        @items.valid?
+        expect(@items.errors.full_messages).to include("Status can't be blank")
+      end
+      it "status_idが1では出品できない" do
+        @items.status_id = 1
         @items.valid?
         expect(@items.errors.full_messages).to include("Status can't be blank")
       end
@@ -49,26 +59,29 @@ describe Item do
         @items.valid?
         expect(@items.errors.full_messages).to include("Area can't be blank")
       end
+      it "area_idが1では出品できない" do
+        @items.area_id = 1
+        @items.valid?
+        expect(@items.errors.full_messages).to include("Area can't be blank")
+      end
       it "priceが空では出品できない" do
         @items.price = ""
         @items.valid?
         expect(@items.errors.full_messages).to include("Price can't be blank")
       end
       it "priceは半角数字以外では入力できない" do
-        @items.price = "１００００"
+        @items.price = １００００
         @items.valid?
         expect(@items.errors.full_messages).to include("Price is not a number")
       end
       it "priceは300円より低い金額では設定できない" do
-        @items.price = "200"
+        @items.price = 200
         @items.valid?
-        binding.pry
         expect(@items.errors.full_messages).to include("")
       end
       it "priceは9999999円より高い金額では設定できない" do
-        @items.price = "99999999"
+        @items.price = 99999999
         @items.valid?
-        # binding.pry
         expect(@items.errors.full_messages).to include("")
       end
     end
