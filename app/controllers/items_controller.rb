@@ -2,16 +2,16 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!,except: [:index]
 
   def index
-    @items = Item.all.order(id: :DESC)
+    @item = Item.all.order(id: :DESC)
   end
 
   def new
-    @items = Item.new
+    @item = Item.new
   end
 
   def create
-    @items = Item.new(item_params)
-    if@items.save
+    @item = Item.new(item_params)
+    if@item.save
       redirect_to root_path
     else
       render :new
@@ -23,6 +23,16 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+       redirect_to item_path
+    else
+       render :edit
+    end
   end
 
   def destroy
