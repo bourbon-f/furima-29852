@@ -10,7 +10,7 @@ class Item < ApplicationRecord
     validates :status_id
     validates :burden_id
     validates :area_id
-    validates :days_id
+    validates :day_id
     validates :price, numericality: { with:PRICE_REGEX, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "Price Out of setting range"}
   end
 
@@ -19,7 +19,7 @@ class Item < ApplicationRecord
     validates :status_id
     validates :burden_id
     validates :area_id
-    validates :days_id
+    validates :day_id
   end
 
   validate :image_necessary?
