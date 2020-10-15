@@ -2,17 +2,22 @@ class OrdersController < ApplicationController
   before_action :move_to_index, only: :index
 
   def index
-    @order = Order.all
+    @item =Item.find(params[:item_id])
+    if user_signed_in? && current_user.id == @item.user_id
+      redirect_to root_path
+   else
+      render :index
+   end
   end
 
-  def show
-  end
+  # def show
+  # end
 
-  def new
-  end
+  # def new
+  # end
 
-  def create
-  end
+  # def create
+  # end
 
   private
 
