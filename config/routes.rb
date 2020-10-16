@@ -7,6 +7,5 @@ Rails.application.routes.draw do
   end
   resources :users, only: :show
 
-  resources :orders, only: [:index]
 
 end
