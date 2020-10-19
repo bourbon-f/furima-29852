@@ -3,7 +3,6 @@ class OrdersController < ApplicationController
 
   def index
     @item =Item.find(params[:item_id])
-    @order = OrderForm.new
     if user_signed_in? && current_user.id == @item.user_id
       redirect_to root_path
     else
@@ -13,7 +12,6 @@ class OrdersController < ApplicationController
 
   def create
     @item =Item.find(params[:item_id])
-    # @order = Order.new(price: order_params[:price])
     @order = OrderForm.new(order_params)
     if @order.valid?
       pay_item
