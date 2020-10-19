@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :move_to_index, only: :index
+  before_action :move, only: :index
 
   def index
     @item =Item.find(params[:item_id])
@@ -41,6 +42,13 @@ class OrdersController < ApplicationController
   def move_to_index
     unless user_signed_in?
       redirect_to new_user_session_path
+    end
+  end
+
+  def move
+    @item = Item.find(params[:item_id])
+    if @item.order
+      redirect_to root_path
     end
   end
 end

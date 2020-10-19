@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!,except: [:index, :show]
   before_action :move_to_index, only: [:edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  # before_action :move, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.all.order(id: :DESC)
@@ -39,7 +40,7 @@ class ItemsController < ApplicationController
       redirect_to root_path
    else
       render :show
-   end
+    end
   end
 
   private
@@ -58,5 +59,12 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
   end
+
+  # def move
+  #   @item = Item.find(params[:id])
+  #   if @item.order
+  #     redirect_to root_path
+  #   end
+  # end
 
 end
