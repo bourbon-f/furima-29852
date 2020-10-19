@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
 
   def index
     @item =Item.find(params[:item_id])
+    @order_form = OrderForm.new
     if user_signed_in? && current_user.id == @item.user_id
       redirect_to root_path
     else
@@ -12,10 +13,10 @@ class OrdersController < ApplicationController
 
   def create
     @item =Item.find(params[:item_id])
-    @order = OrderForm.new(order_params)
-    if @order.valid?
+    @order_form = OrderForm.new(order_params)
+    if @order_form.valid?
       pay_item
-      @order.save
+      @order_form.save
       return redirect_to root_path
     else
       render 'index'
@@ -25,7 +26,7 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.permit(:postal_code, :prefecture_id, :municipality, :address, :building_name, :tel_number, :user_id, :item_id, :price, :token).merge(user_id: current_user.id)
+    params.require(:order_form).permit(:postal_code, :prefecture_id, :municipality, :address, :building_name, :tel_number, :price).merge(user_id: current_user.id, token: params[:token], item_id: params[:item_id])
   end
 
   def pay_item
