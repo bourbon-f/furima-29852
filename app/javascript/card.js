@@ -6,16 +6,13 @@ const pay = ()=> {
     
       const formResult = document.getElementById("charge-form");
       const formData = new FormData(formResult);
-      console.log(formData)
       const card = {
         number: formData.get("order_form[number]"),
         cvc: formData.get("order_form[cvc]"),
         exp_month: formData.get("order_form[exp_month]"),
         exp_year: `20${formData.get("order_form[exp_year]")}`,
       };
-console.log(card)
       Payjp.createToken(card, (status, response) => {
-        debugger
         if (status == 200) {
           const token = response.id;
           console.log(token)
